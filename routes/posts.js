@@ -3,6 +3,6 @@ const router = express.Router();
 const passport = require('passport');
 const posts_controller = require('../controllers/posts_controller');
 
-router.post('/', passport.sign_out_handler, posts_controller.create);
+router.post('/create', passport.sign_out_handler, posts_controller.create);
 
 module.exports = router;

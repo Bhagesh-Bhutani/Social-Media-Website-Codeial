@@ -11,6 +11,11 @@ header {
     text-decoration: none;
     color: white; }
 
+hr {
+  height: 1px;
+  background-color: #ccc;
+  border: none; }
+
 .sign-container {
   list-style: none;
   margin: 0;

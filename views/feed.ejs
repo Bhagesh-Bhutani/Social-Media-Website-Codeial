@@ -6,7 +6,7 @@
 
         </div>
         <div class = "col xs12 s12 m10 l8 xl6 post-card">
-            <form action = "/posts" method = "POST" class = "card">
+            <form action = "/posts/create" method = "POST" class = "card">
                 <span class = "card-title">What's on your Mind?</span>
                 <div class = "input-field">
                     <textarea name = "content" id = "content" class = "materialize-textarea" cols="30" rows="3" required></textarea>
@@ -37,15 +37,36 @@
                     <div class = "post card">
                         <h5><%= post.user.name %></h5>
                         <p class = "#e0e0e0 grey-text lighten-2"><i class="fas fa-globe"></i> <%= post.createdAt %></p>
+                        <hr>
                         <div>
                             <%= post.content %> 
                         </div>
-                        <div class = "like-comment-tab row">
-                            <div class = "col xs6 s6 m6 l6 xl6 center-align waves-effect">
-                                <i class="far fa-thumbs-up"></i> Like
+                        <div class = "like-comment-tab row" id = "like-comment-tab">
+                            <div class = "col xs6 s6 m6 l6 xl6 center-align waves-effect waves-blue like-btn">
+                                <i class = "far fa-thumbs-up"></i> Like
                             </div>
-                            <div class = "col xs6 s6 m6 l6 xl6 center-align waves-effect">
-                                <i class="far fa-comment"></i> Comment
+                            <div class = "col xs6 s6 m6 l6 xl6 center-align waves-effect waves-green comment-btn">
+                                <i class = "far fa-comment"></i> Comment
+                            </div>
+                        </div>
+                        <div class = "post-comments">
+                            <form action = "/comments/create" method = "POST">
+                                <div class = "input-field">
+                                    <input type = "text" name = "content" id = "comment-content" placeholder = "Add a comment..." required>
+                                </div>
+                                <input type = "hidden" name = "post" value = <%= post._id %>>
+                                <button class="btn blue waves-effect waves-light" type="submit">Post
+                                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                </button>
+                            </form>
+
+                            <div class = "comments-container">
+                                <% for(comment of post.comments){ %>
+                                    <div class = "comment">
+                                        <h5><%= comment.user.name %></h5>
+                                        <p><%= comment.content %></p>
+                                    </div>
+                                <% } %> 
                             </div>
                         </div>
                     </div> 

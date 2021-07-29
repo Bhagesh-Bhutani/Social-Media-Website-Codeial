@@ -62,7 +62,7 @@ passport.checkAuthentication = function(req, res, next){
 
 passport.login_signup_handler = function(req, res, next){
     if(req.isAuthenticated()){
-        return res.redirect('/users/profile');
+        return res.redirect('/users/feed');
     }
 
     // Not Authenticated, so call next and endpoint handlers will render the requested page

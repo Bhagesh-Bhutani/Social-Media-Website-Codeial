@@ -8,31 +8,22 @@ const User = require('../models/user');
 
 module.exports.users_action = function(req, res){
     // We know that user is Authenticated, hence req.user exists
-    Post.find({}, async function(err, posts){
-        if(err){
-            console.log("Error while finding all posts.");
-            return;
-        }
-
-        for(post of posts){
-            let user = await User.findById(post.user);
-            post['user_object'] = user;
-        }
+    // populate function populates the user reference id to its corresponding object in User Model
+    Post.find({}).populate('user').exec(function(err, posts){
         posts.sort(function(p1, p2){
-            if(p1 > p2){
+            if(p1.updatedAt > p2.updatedAt){
                 return -1;
-            } else if(p1 < p2){
+            } else if(p1.updatedAt < p2.updatedAt){
                 return 1;
             } else {
                 return 0;
             }
         });
-        return res.render('user_profile', {
-            title: "User Profile",
+        return res.render('feed',{
+            title: "Feed",
             posts: posts
         });
     });
-    
 };
 
 module.exports.destroySession = function(req, res){

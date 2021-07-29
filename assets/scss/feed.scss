@@ -1,0 +1,21 @@
+main{
+    margin-top: 1rem;
+}
+
+.post-card>.card{
+    padding: 1rem;
+}
+
+.post{
+    padding: 0 1rem;
+    padding-top: 0.1rem;
+    .like-comment-tab{
+        margin-top: 1rem;
+        >div{
+            padding: 1rem;
+            &:hover{
+                background-color: rgba(212, 205, 205, 0.603);
+            }
+        }
+    }
+}

@@ -18,7 +18,8 @@ main {
   background-color: #24a0ed; }
 
 .like-comment-tab {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  margin-top: 0 !important; }
 
 .post-comments {
   padding-bottom: 0.5rem; }
@@ -30,7 +31,12 @@ main {
 .comment {
   border-radius: 2rem;
   border-top-left-radius: 0;
-  background-color: rgba(192, 188, 188, 0.637);
+  background-color: rgba(192, 188, 188, 0.733);
   padding: 0.7rem;
   padding-top: 0.1rem;
   margin-bottom: 1rem; }
+
+.like-comment-numbers {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem; }

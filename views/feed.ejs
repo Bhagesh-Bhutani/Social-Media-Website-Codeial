@@ -41,6 +41,14 @@
                         <div>
                             <%= post.content %> 
                         </div>
+                        <div class = "like-comment-numbers">
+                            <div class = "like-numbers">
+                                0 <i class = "far fa-thumbs-up"></i>
+                            </div>
+                            <div class = "comment-numbers">
+                                <i class = "far fa-comment"></i> <%= post.comments.length %> 
+                            </div>
+                        </div>
                         <div class = "like-comment-tab row" id = "like-comment-tab">
                             <div class = "col xs6 s6 m6 l6 xl6 center-align waves-effect waves-blue like-btn">
                                 <i class = "far fa-thumbs-up"></i> Like

@@ -1,0 +1,13 @@
+<div class = "comment">
+    <div class = "comment-user-deletebtn-container">
+        <h6><%= comment.user.name %></h6>
+        <% if(comment.user.id == locals.user.id) { %>
+            <i class="comment-dropdown-btn fas fa-chevron-circle-down dropdown-trigger waves-effect" data-target = "dropdown-<%= comment.id %>">
+            </i>
+            <ul id = "dropdown-<%= comment.id %>" class = "dropdown-content">
+                <li><a href="/comments/destroy/<%= comment.id %>">Delete</a></li>
+            </ul>
+        <% } %>
+    </div>
+    <p><%= comment.content %></p>
+</div>

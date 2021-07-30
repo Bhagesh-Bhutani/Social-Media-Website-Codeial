@@ -55,3 +55,23 @@ main{
     justify-content: space-between;
     margin-top: 1rem;
 }
+
+#scroll-to-top-btn{
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    &:hover{
+        opacity: 1;
+    }
+}
+
+.fade-opacity{
+    opacity: 0.5;
+}
+
+.transparent-opacity{
+    opacity: 0;
+    visibility: hidden;
+}

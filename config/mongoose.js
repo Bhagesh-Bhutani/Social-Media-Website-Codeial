@@ -11,7 +11,7 @@ db.once('open', function(){
     console.log("Successfully connected to MongoDB");
 });
 
-mongoose.connect('mongodb://localhost/codeial_development', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb://localhost/codeial_development', {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
 .catch(err => {
     console.log("Initial error while connecting to MongoDB");
     console.log(err);

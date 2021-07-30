@@ -35,6 +35,8 @@ main {
   padding: 0.7rem;
   padding-top: 0.1rem;
   margin-bottom: 1rem; }
+  .comment > h6 {
+    font-weight: bold; }
 
 .like-comment-numbers {
   display: flex;
@@ -49,6 +51,19 @@ main {
   transition-timing-function: ease-in-out; }
   #scroll-to-top-btn:hover {
     opacity: 1; }
+
+.user-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.post-dropdown-btn {
+  padding: 1.2rem;
+  clip-path: circle(71%);
+  border-radius: 50%;
+  transform: scale(1.2); }
+  .post-dropdown-btn:hover {
+    background-color: rgba(233, 230, 230, 0.603); }
 
 .fade-opacity {
   opacity: 0.5; }

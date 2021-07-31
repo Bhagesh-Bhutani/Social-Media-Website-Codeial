@@ -1,15 +1,17 @@
 <div class = "post card">
     <div class = "user-intro">
-        <div>
-            <h5><%= post.user.name %></h5>
-            <p class = "#e0e0e0 grey-text lighten-2"><i class="fas fa-globe"></i> <%= post.createdAt.toString().substring(0,25) %></p>
+        <div class = "post-user-image-container">
+            <div>
+                <img class = "circle responsive-img user-image" src = "/images/default-user-image.png">
+            </div>
+            <div class = "user-name-time-container">
+                <h5><%= post.user.name %></h5>
+                <p class = "#e0e0e0 grey-text lighten-2 post-time"><i class="fas fa-globe"></i> <%= post.createdAt.toString().substring(0,25) %></p>
+            </div>
         </div>
         <% if(post.user.id == locals.user.id){ %>
             <div>
-                <!-- <div class = "post-dropdown-btn dropdown-trigger waves-effect" data-target = "dropdown-<%= post.id %>"> -->
-                    <i class="fas fa-edit post-dropdown-btn dropdown-trigger waves-effect" data-target = "dropdown-<%= post.id %>">
-                    </i>
-                <!-- </div> -->
+                <i class="fas fa-edit post-dropdown-btn dropdown-trigger waves-effect" data-target = "dropdown-<%= post.id %>"></i>
                 <ul id = "dropdown-<%= post.id %>" class = "dropdown-content">
                     <li><a href="/posts/destroy/<%= post.id %>">Delete</a></li>
                 </ul>
@@ -18,7 +20,7 @@
     </div>
     
     <hr>
-    <div>
+    <div class = "post-content">
         <%= post.content %> 
     </div>
     <div class = "like-comment-numbers">

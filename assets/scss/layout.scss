@@ -36,7 +36,7 @@ hr{
     align-items: center;
     color: white;
     font-size: 1.15rem;
-    div{
+    div:not(.no-apply){
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -66,8 +66,8 @@ hr{
 }
 
 #user-dropdown-link{
+    cursor: pointer;
     display: flex;
-    // display: inline-block;
     align-items: center;
     padding: 0.6rem 0;
     padding-left: 0.5rem;

@@ -6,12 +6,21 @@
         </div>
         <% if(locals.user){ %>
             <div class = "no-apply div-no-apply">
-                <div id = "user-dropdown-link" class='dropdown-trigger no-apply' href='#' data-target='user-options-dropdown'>
+                <div id = "user-dropdown-link" class='no-apply sidenav-trigger' href='#' data-target='user-options-dropdown'>
                     <img src = "/images/default-user-image.png" alt="" class = "circle responsive-img user-image">
                     <i class="fas fa-caret-down"></i>
                 </div>
-                <ul id = "user-options-dropdown" class = "dropdown-content no-apply">
-                    <li><a href="" class = "no-apply">Profile</a></li>
+                <ul id = "user-options-dropdown" class = "no-apply sidenav">
+                    <li><div class="user-view no-apply">
+                        <div class="background no-apply">
+                          <img src="/images/sidenav-bg.jpg">
+                        </div>
+                        <a href="#!" class = "no-apply"><img class="circle" src="/images/default-user-image.png"></a>
+                        <a href="#!" class = "no-apply"><span class="white-text name"><%= locals.user.name %> </span></a>
+                        <a href="#!" class = "no-apply"><span class="white-text email"><%= locals.user.email %> </span></a>
+                      </div></li>
+                    <li><a href="" class = "no-apply">My Profile</a></li>
+                    <li><a href="/users/update" class = "no-apply">Edit Profile</a></li>
                     <li><a href="/users/sign-out" class = "no-apply">Sign Out</a></li>
                 </ul>
             </div>

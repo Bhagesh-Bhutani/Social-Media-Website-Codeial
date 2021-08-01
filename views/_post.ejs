@@ -1,6 +1,6 @@
 <div class = "post card">
     <div class = "user-intro">
-        <div class = "post-user-image-container">
+        <a href="/users/profile/<%= post.user.id %>" class = "post-user-image-container">
             <div>
                 <img class = "circle responsive-img user-image" src = "/images/default-user-image.png">
             </div>
@@ -8,7 +8,8 @@
                 <h5><%= post.user.name %></h5>
                 <p class = "#e0e0e0 grey-text lighten-2 post-time"><i class="fas fa-globe"></i> <%= post.createdAt.toString().substring(0,25) %></p>
             </div>
-        </div>
+        </a>
+        
         <% if(post.user.id == locals.user.id){ %>
             <div>
                 <i class="fas fa-edit post-dropdown-btn dropdown-trigger waves-effect" data-target = "dropdown-<%= post.id %>"></i>
@@ -18,6 +19,7 @@
             </div>
         <% } %>
     </div>
+    
     
     <hr>
     <div class = "post-content">

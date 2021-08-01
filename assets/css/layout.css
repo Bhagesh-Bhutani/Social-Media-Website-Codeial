@@ -36,7 +36,7 @@ hr {
   .sign-container h4 {
     margin: 0.5rem;
     color: white; }
-  .sign-container a {
+  .sign-container a:not(.no-apply) {
     display: inline-block;
     padding: 0.8rem;
     margin: 0.5rem;
@@ -44,9 +44,23 @@ hr {
     border-radius: 0.5rem;
     transition-duration: 0.2s;
     transition-timing-function: linear; }
-    .sign-container a:hover {
+    .sign-container a:not(.no-apply):hover:not(.no-apply) {
       color: black;
       background-color: white; }
+
+.user-image {
+  width: 3.5rem;
+  margin-right: 0.5rem; }
+
+#user-dropdown-link {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 0;
+  padding-left: 0.5rem;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in-out; }
+  #user-dropdown-link:hover {
+    background-color: rgba(202, 195, 195, 0.479); }
 
 /* width */
 ::-webkit-scrollbar {

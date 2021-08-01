@@ -5,9 +5,15 @@
             <a href="/"><li>Home</li></a>
         </div>
         <% if(locals.user){ %>
-            <div>
-                <li>Hi <%= locals.user.name %>!</li>
-                <a href="/users/sign-out"><li>Sign Out</li></a>
+            <div class = "no-apply div-no-apply">
+                <div id = "user-dropdown-link" class='dropdown-trigger no-apply' href='#' data-target='user-options-dropdown'>
+                    <img src = "/images/default-user-image.png" alt="" class = "circle responsive-img user-image">
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <ul id = "user-options-dropdown" class = "dropdown-content no-apply">
+                    <li><a href="" class = "no-apply">Profile</a></li>
+                    <li><a href="/users/sign-out" class = "no-apply">Sign Out</a></li>
+                </ul>
             </div>
         <% } else { %>
             <div>

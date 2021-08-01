@@ -45,7 +45,7 @@ hr{
         margin: 0.5rem;
         color: white;
     }
-    a{
+    a:not(.no-apply){
         display: inline-block;
         padding: 0.8rem;
         margin: 0.5rem;
@@ -53,12 +53,38 @@ hr{
         border-radius: 0.5rem;
         transition-duration: 0.2s;
         transition-timing-function: linear;
-        &:hover{
+        &:hover:not(.no-apply){
             color: black;
             background-color: white;
         }
     }
 }
+
+.user-image{
+    width: 3.5rem;
+    margin-right: 0.5rem;
+}
+
+#user-dropdown-link{
+    display: flex;
+    // display: inline-block;
+    align-items: center;
+    padding: 0.6rem 0;
+    padding-left: 0.5rem;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+    // height: 100%;
+    // margin-right: 0.2rem;
+    
+    &:hover{
+        background-color: rgba(202, 195, 195, 0.479);
+    }
+}
+
+// .div-no-apply{
+//     box-sizing: border-box;
+//     height: 100%;
+// }
 
 // Scrollbar Styling
 

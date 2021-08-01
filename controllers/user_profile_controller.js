@@ -6,7 +6,7 @@ module.exports.getProfile = function(req, res){
             console.log("Error while finding user for profile page.");
             return;
         }
-        res.render('user_profile', {
+        return res.render('user_profile', {
             title: user.name + ' | Profile',
             profile_user: user
         });

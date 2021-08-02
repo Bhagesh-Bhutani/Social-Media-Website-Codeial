@@ -22,6 +22,10 @@ const MongoStore = require('connect-mongo')(session);
 // Require node-sass-middleware
 const sassMiddleware = require('node-sass-middleware');
 
+// Require connect-flash , library for notifications
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
+
 // Setting up the view engine
 app.set('view engine', 'ejs');
 app.set('views', './views');
@@ -74,8 +78,12 @@ app.use(session({
 app.use(passport.initialize()); // Initializes passportjs
 app.use(passport.session()); // Used to get the true deserialized object from cookie
 
-//Middleware to set the authenticated user in req.locals for the views
+// Middleware to set the authenticated user in req.locals for the views
 app.use(passport.setAuthenticatedUser);
+
+// Middleware for connect-flash, just below session
+app.use(flash());
+app.use(customMware.setFlash);
 
 // use express router
 app.use('/', require('./routes'));

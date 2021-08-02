@@ -40,6 +40,7 @@ module.exports.users_action = async function(req, res){
 };
 
 module.exports.destroySession = function(req, res){
+    req.flash('success', 'You have logged out');
     req.logout();
     return res.redirect('/');
 }

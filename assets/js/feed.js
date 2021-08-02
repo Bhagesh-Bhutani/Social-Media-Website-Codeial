@@ -32,7 +32,7 @@ let createPost = function(post){
                     </div>
                     <div class = "user-name-time-container">
                         <h5>${ post.user.name }</h5>
-                        <p class = "#e0e0e0 grey-text lighten-2 post-time"><i class="fas fa-globe"></i> ${ post.createdAt.toString().substring(0,25) }</p>
+                        <p class = "#e0e0e0 grey-text lighten-2 post-time"><i class="fas fa-globe"></i> Just Now</p>
                     </div>
                 </a>
                     <div>
@@ -104,3 +104,5 @@ let newPostFormAction = function(event){
 };
 
 newPostForm.on('submit', newPostFormAction);
+
+// For deletion of post

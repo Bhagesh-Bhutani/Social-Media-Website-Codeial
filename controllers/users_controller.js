@@ -12,20 +12,11 @@ module.exports.users_action = async function(req, res){
     try{
         let posts = await Post.find({})
         .populate('user')
+        .sort('-createdAt')
         .populate({
             path: 'comments',
             populate: {
                 path: 'user'
-            }
-        });
-
-        posts.sort(function(p1, p2){
-            if(p1.updatedAt > p2.updatedAt){
-                return -1;
-            } else if(p1.updatedAt < p2.updatedAt){
-                return 1;
-            } else {
-                return 0;
             }
         });
             

@@ -9,7 +9,7 @@
 
         </div>
         <div class = "col xs12 s12 m10 l8 xl6 post-card">
-            <form action = "/posts/create" method = "POST" class = "card">
+            <form id = "new-post-form" action = "/posts/create" method = "POST" class = "card">
                 <span class = "card-title">What's on your Mind?</span>
                 <div class = "input-field">
                     <textarea name = "content" id = "content" class = "materialize-textarea" cols="30" rows="3" required></textarea>
@@ -35,7 +35,7 @@
             <div class = "center-align">
                 <h4>Your Feed</h4>
             </div>
-            <div class = "feed-posts-container">
+            <div class = "feed-posts-container" id = "feed-posts-container">
                 <% for(post of posts){ %>
                     <%- include('_post') %>  
                 <% } %> 

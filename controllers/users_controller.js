@@ -43,3 +43,25 @@ module.exports.destroySession = function(req, res){
     req.logout();
     return res.redirect('/');
 }
+
+module.exports.getUpdateUserPage = async function(req, res){
+    try{
+        let user = await User.findById(req.user._id);
+        return res.render('update_profile', {
+            title: user.name + ' | Update Profile',
+        });
+    } catch(err){
+        console.log(err);
+        return res.status(404).send('This user not found');
+    }
+};
+
+module.exports.updateUser = async function(req, res){
+    try{
+        await User.findByIdAndUpdate(req.user._id, req.body);
+        return res.redirect('back');
+    } catch(err){
+        console.log(err);
+        res.status(404).send("This user not found.");
+    }
+}

@@ -8,6 +8,10 @@ router.get('/feed', passport.checkAuthentication, users_controller.users_action)
 
 router.get('/sign-out', passport.sign_out_handler ,users_controller.destroySession);
 
+router.get('/update', passport.sign_out_handler, users_controller.getUpdateUserPage);
+
+router.post('/update', passport.sign_out_handler, users_controller.updateUser);
+
 router.use('/profile', require('./profile'));
 
 module.exports = router;

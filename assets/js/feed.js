@@ -24,7 +24,7 @@ let newPostForm = $('#new-post-form');
 
 let createPost = function(post){
     return $(`
-        <div class = "post card">
+        <div class = "post card" id = "${post._id}">
             <div class = "user-intro">
                 <a href="/users/profile/${post.user._id}" class = "post-user-image-container">
                     <div>
@@ -38,7 +38,7 @@ let createPost = function(post){
                     <div>
                         <i class="fas fa-edit post-dropdown-btn dropdown-trigger waves-effect" data-target = "dropdown-${ post._id }"></i>
                         <ul id = "dropdown-${post._id}" class = "dropdown-content">
-                            <li><a href="/posts/destroy/${post._id}">Delete</a></li>
+                            <li><a href="/posts/destroy/${post._id}" class = "post-delete-link" data-postID = "${post._id}">Delete</a></li>
                         </ul>
                     </div>
             </div>
@@ -88,9 +88,10 @@ let newPostFormAction = function(event){
         data: newPostForm.serialize(),
         success: function(data){
             $('#feed-posts-container').prepend(createPost(data.data.post));
+            $('#content').val('');
             materializeInit();
             new Noty({
-                text: "Post Created Successfully!",
+                text: data.message,
                 layout: 'topRight',
                 theme: 'relax',
                 type: 'success',
@@ -99,6 +100,13 @@ let newPostFormAction = function(event){
         },
         error: function(err){
             console.log(err);
+            new Noty({
+                text: data.message,
+                layout: 'topRight',
+                theme: 'relax',
+                type: 'error',
+                timeout: 2000
+            }).show();
         }
     });
 };
@@ -106,3 +114,33 @@ let newPostFormAction = function(event){
 newPostForm.on('submit', newPostFormAction);
 
 // For deletion of post
+let deletePost = function(postID){
+    $.ajax({
+        type: 'get',
+        url: `/posts/destroy/${postID}`,
+        success: function(data){
+            $(`#${postID}`).remove();
+            new Noty({
+                text: data.message,
+                layout: 'topRight',
+                theme: 'relax',
+                type: 'success',
+                timeout: 2000
+            }).show();
+        },
+        error: function(data){
+            new Noty({
+                text: data.message,
+                layout: 'topRight',
+                theme: 'relax',
+                type: 'warning',
+                timeout: 2000
+            }).show();
+        }
+    });
+};
+
+$('.feed-posts-container').on('click', '.post-delete-link', function(event){
+    event.preventDefault();
+    deletePost(event.target.getAttribute('data-postID'));
+});

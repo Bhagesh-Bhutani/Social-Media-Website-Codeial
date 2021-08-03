@@ -1,4 +1,4 @@
-<div class = "post card">
+<div class = "post card" id = "<%= post.id %>">
     <div class = "user-intro">
         <a href="/users/profile/<%= post.user.id %>" class = "post-user-image-container">
             <div>
@@ -14,7 +14,7 @@
             <div>
                 <i class="fas fa-edit post-dropdown-btn dropdown-trigger waves-effect" data-target = "dropdown-<%= post.id %>"></i>
                 <ul id = "dropdown-<%= post.id %>" class = "dropdown-content">
-                    <li><a href="/posts/destroy/<%= post.id %>">Delete</a></li>
+                    <li><a href="/posts/destroy/<%= post.id %>" class = "post-delete-link" data-postID = "<%= post.id %> ">Delete</a></li>
                 </ul>
             </div>
         <% } %>

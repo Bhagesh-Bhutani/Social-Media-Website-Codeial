@@ -18,6 +18,27 @@ scroll_to_top_btn.addEventListener('click', function(event){
     });
 });
 
+// Notification Functions
+let successNotification = function(data){
+    new Noty({
+        text: data.message,
+        layout: 'topRight',
+        theme: 'relax',
+        type: 'success',
+        timeout: 2000
+    }).show();
+}
+
+let errorNotification = function(data, defaultMessage){
+    new Noty({
+        text: data.message || defaultMessage,
+        layout: 'topRight',
+        theme: 'relax',
+        type: 'error',
+        timeout: 2000
+    }).show();
+}
+
 // For submitting post form via AJAX
 
 let newPostForm = $('#new-post-form');
@@ -65,7 +86,7 @@ let createPost = function(post){
                 </div>
             </div>
             <div class = "post-comments">
-                <form action = "/comments/create" method = "POST">
+                <form action = "/comments/create" method = "POST" class = "create-comment">
                     <div class = "input-field">
                         <input type = "text" name = "content" id = "comment-content" placeholder = "Add a comment..." required>
                     </div>
@@ -90,23 +111,10 @@ let newPostFormAction = function(event){
             $('#feed-posts-container').prepend(createPost(data.data.post));
             $('#content').val('');
             materializeInit();
-            new Noty({
-                text: data.message,
-                layout: 'topRight',
-                theme: 'relax',
-                type: 'success',
-                timeout: 2000
-            }).show();
+            successNotification(data);
         },
-        error: function(err){
-            console.log(err);
-            new Noty({
-                text: data.message,
-                layout: 'topRight',
-                theme: 'relax',
-                type: 'error',
-                timeout: 2000
-            }).show();
+        error: function(data){
+            errorNotification(data, "Post Creation request could not be sent");
         }
     });
 };
@@ -120,27 +128,61 @@ let deletePost = function(postID){
         url: `/posts/destroy/${postID}`,
         success: function(data){
             $(`#${postID}`).remove();
-            new Noty({
-                text: data.message,
-                layout: 'topRight',
-                theme: 'relax',
-                type: 'success',
-                timeout: 2000
-            }).show();
+            successNotification(data);
         },
         error: function(data){
-            new Noty({
-                text: data.message,
-                layout: 'topRight',
-                theme: 'relax',
-                type: 'warning',
-                timeout: 2000
-            }).show();
+            errorNotification(data, "Post deletion request could not be sent");
         }
     });
 };
 
-$('.feed-posts-container').on('click', '.post-delete-link', function(event){
+$('#feed-posts-container').on('click', '.post-delete-link', function(event){
     event.preventDefault();
     deletePost(event.target.getAttribute('data-postID'));
+});
+
+// For Comment Creation
+let createComment = function(comment){
+    return `
+        <div class = "comment">
+            <a href="/users/profile/${comment.user._id}">
+            <div class = "comment-image-container">
+                <img class = "circle responsive-img user-image" src = "/images/default-user-image.png">
+            </div>
+            </a>
+            
+            <div class = "comment-container">
+                <div class = "comment-user-deletebtn-container">
+                    <a href="/users/profile/${comment.user._id}"><h6>${comment.user.name}</h6></a>
+                    <i class="comment-dropdown-btn fas fa-chevron-circle-down dropdown-trigger waves-effect" data-target = "dropdown-${comment._id}">
+                    </i>
+                    <ul id = "dropdown-${comment._id}" class = "dropdown-content">
+                        <li><a href="/comments/destroy/${comment._id}">Delete</a></li>
+                    </ul>
+                </div>
+                <p class = "comment-para">${comment.content}</p>
+            </div>
+        </div>
+    `;
+}
+
+let newCommentCreateAction = function(commentForm){
+    $.ajax({
+        type: 'post',
+        url: '/comments/create',
+        data: $(commentForm).serialize(),
+        success: function(data){
+            $(commentForm).parent().find('.comments-container').prepend(createComment(data.data.comment));
+            materializeInit();
+            successNotification(data);
+        },
+        error: function(data){
+            errorNotification(data, "Comment creation request could not be sent");
+        }
+    });
+}
+
+$('#feed-posts-container').on('submit', '.create-comment', function(event){
+    event.preventDefault();
+    newCommentCreateAction(event.target);
 });

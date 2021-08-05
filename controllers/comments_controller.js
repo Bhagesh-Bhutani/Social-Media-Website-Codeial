@@ -33,7 +33,7 @@ module.exports.destroy = async function(req, res){
         let comment = await Comment.findById(req.params.id);
         if(comment.user == req.user.id){
             let postID = comment.post;
-            comment.remove();
+            await comment.remove();
             await Post.findByIdAndUpdate(postID, {
                 $pull: {
                     comments: req.params.id

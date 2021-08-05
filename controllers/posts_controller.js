@@ -12,7 +12,6 @@ module.exports.create = async function(req, res){
         if(req.xhr){
             try{
                 post = await post.populate('user').execPopulate();
-                console.log(post.createdAt);
                 return res.status(200).json({
                     data: {
                         post: post
@@ -39,7 +38,7 @@ module.exports.destroy = async function(req, res){
         let post = await Post.findById(req.params.id);
         if(req.xhr){
             if(post.user == req.user.id){
-                post.remove();
+                await post.remove();
                 await Comment.deleteMany({
                     post: post._id
                 });
@@ -53,7 +52,7 @@ module.exports.destroy = async function(req, res){
             }
         }
         if(post.user == req.user.id){
-            post.remove();
+            await post.remove();
             await Comment.deleteMany({
                 post: post._id
             });

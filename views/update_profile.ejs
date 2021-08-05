@@ -6,15 +6,25 @@
         </div>
         <div class = "col xs12 s12 m10 l8 xl6">
             <div class = "center-align">
-                <img src = "/images/default-user-image.png" alt="" class = "circle responsive-img user-photo-edit">
+                <img src = "<%= user.avatar %> " alt="" class = "circle responsive-img user-photo-edit">
             </div>
-            <form action = "/users/update" method = "POST">
+
+            <form action = "/users/update" method = "POST" enctype = "multipart/form-data">
+                <div class="file-field input-field">
+                    <div class = "btn">
+                        <span>File</span>
+                        <input type = "file" name = "avatar">
+                    </div>
+                    <div class = "file-path-wrapper">
+                        <input class = "file-path validate" type = "text">
+                    </div>
+                </div>
                 <div class = "input-field">
-                    <input type="text" name = "name" id = "name" value = "<%= locals.user.name %>" required>
+                    <input type = "text" name = "name" id = "name" value = "<%= locals.user.name %>" required>
                     <label for = "name">Name</label>
                 </div>
                 <div class = "input-field">
-                    <input type="text" name = "email" id = "email" value = "<%= locals.user.email %>" required>
+                    <input type = "text" name = "email" id = "email" value = "<%= locals.user.email %>" required>
                     <label for = "email">Email</label>
                 </div>
                 <div class = "center-align update-btn-container">

@@ -62,8 +62,23 @@ module.exports.getUpdateUserPage = async function(req, res){
 
 module.exports.updateUser = async function(req, res){
     try{
-        await User.findByIdAndUpdate(req.user._id, req.body);
-        return res.redirect('back');
+        // await User.findByIdAndUpdate(req.user._id, req.body);
+        let user = await User.findById(req.user._id);
+        User.uploadedAvatar(req, res, async function(err){
+            if(err){
+                console.log(err);
+                return;
+            }
+            user.name = req.body.name;
+            user.email = req.body.email;
+            
+            if(req.file){
+                // save the path of file
+                user.avatar = User.avatarPath + '/' + req.file.filename;
+            }
+            await user.save();
+            return res.redirect('back');
+        });
     } catch(err){
         console.log(err);
         res.status(404).send("This user not found.");

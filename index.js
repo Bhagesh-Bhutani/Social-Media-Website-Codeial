@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 const port = 8000;
-
+const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 // Cookie Parser not needed now in newer versions of express-session since 1.5.0
 // const cookieParser = require('cookie-parser');
@@ -41,6 +41,9 @@ app.use(sassMiddleware({
 
 // Middleware to set up Static File Access
 app.use(express.static('./assets'));
+
+// Make uploads path available to browser
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 // Middleware to parse the requests body of post requests
 app.use(express.urlencoded({extended: true}));

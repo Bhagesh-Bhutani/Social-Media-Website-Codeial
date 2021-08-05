@@ -58,9 +58,9 @@ $comment-bg-color: #f2f2f2;
     padding: 0.7rem;
     // display: flex;
     padding-top: 0.3rem;
-    // flex-grow: 0;
+    flex-grow: 1;
     margin-bottom: 1rem;
-    flex-basis: 85%;
+    // flex-basis: 85%;
     h6{
         font-weight: bold;
     }
@@ -70,9 +70,10 @@ $comment-bg-color: #f2f2f2;
 }
 
 .comment-image-container{
-    flex-basis: 15%;
+    flex-basis: 3.3rem;
+    // margin-right: 1rem;
     flex-shrink: 0;
-    flex-grow: 1;
+    // flex-grow: 1;
     margin: 0;
 }
 
@@ -153,6 +154,7 @@ $comment-bg-color: #f2f2f2;
     margin: 0;
     margin-top: 0.2rem;
     hyphens: auto;
+    // flex-grow: 1;
     // word-break: break-all;
     // overflow-wrap: break-word;
 }

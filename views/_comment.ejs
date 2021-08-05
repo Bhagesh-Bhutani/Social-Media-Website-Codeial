@@ -1,4 +1,4 @@
-<div class = "comment">
+<div id = "<%= comment.id %>" class = "comment">
     <a href="/users/profile/<%= comment.user.id %>">
     <div class = "comment-image-container">
         <img class = "circle responsive-img user-image" src = "/images/default-user-image.png">
@@ -12,7 +12,7 @@
                 <i class="comment-dropdown-btn fas fa-chevron-circle-down dropdown-trigger waves-effect" data-target = "dropdown-<%= comment.id %>">
                 </i>
                 <ul id = "dropdown-<%= comment.id %>" class = "dropdown-content">
-                    <li><a href="/comments/destroy/<%= comment.id %>">Delete</a></li>
+                    <li><a href="/comments/destroy/<%= comment.id %>" data-commentID = '<%= comment.id %>' class = "comment-delete-link">Delete</a></li>
                 </ul>
             <% } %>
         </div>

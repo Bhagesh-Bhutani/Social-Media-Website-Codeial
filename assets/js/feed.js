@@ -25,7 +25,7 @@ let successNotification = function(data){
         layout: 'topRight',
         theme: 'relax',
         type: 'success',
-        timeout: 2000
+        timeout: 2500
     }).show();
 }
 
@@ -35,7 +35,7 @@ let errorNotification = function(data, defaultMessage){
         layout: 'topRight',
         theme: 'relax',
         type: 'error',
-        timeout: 2000
+        timeout: 2500
     }).show();
 }
 
@@ -144,7 +144,7 @@ $('#feed-posts-container').on('click', '.post-delete-link', function(event){
 // For Comment Creation
 let createComment = function(comment){
     return `
-        <div class = "comment">
+        <div id = "${comment._id}" class = "comment">
             <a href="/users/profile/${comment.user._id}">
             <div class = "comment-image-container">
                 <img class = "circle responsive-img user-image" src = "/images/default-user-image.png">
@@ -157,7 +157,7 @@ let createComment = function(comment){
                     <i class="comment-dropdown-btn fas fa-chevron-circle-down dropdown-trigger waves-effect" data-target = "dropdown-${comment._id}">
                     </i>
                     <ul id = "dropdown-${comment._id}" class = "dropdown-content">
-                        <li><a href="/comments/destroy/${comment._id}">Delete</a></li>
+                        <li><a href="/comments/destroy/${comment._id}" data-commentID = '${comment._id}' class = "comment-delete-link">Delete</a></li>
                     </ul>
                 </div>
                 <p class = "comment-para">${comment.content}</p>
@@ -185,4 +185,25 @@ let newCommentCreateAction = function(commentForm){
 $('#feed-posts-container').on('submit', '.create-comment', function(event){
     event.preventDefault();
     newCommentCreateAction(event.target);
+});
+
+// For Comment Deletion
+let deleteComment = function(commentID){
+    $.ajax({
+        type: 'get',
+        url: `/comments/destroy/${commentID}`,
+        success: function(data){
+            $(`#${commentID}`).remove();
+            successNotification(data);
+        },
+        error: function(data){
+            errorNotification(data, "Comment Deletion request could not be sent");
+        }
+    });
+}
+
+$('#feed-posts-container').on('click', '.comment-delete-link', function(event){
+    event.preventDefault();
+    let commentID = event.target.getAttribute('data-commentID');
+    deleteComment(commentID);
 });

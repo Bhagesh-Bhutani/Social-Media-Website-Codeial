@@ -19,6 +19,18 @@ module.exports.users_action = async function(req, res){
                 path: 'user'
             }
         });
+
+        posts.forEach(post => {
+            post.comments.sort(function(c1, c2){
+                if(c1.createdAt < c2.createdAt){
+                    return 1;
+                }
+                if(c1.createdAt > c2.createdAt){
+                    return -1;
+                }
+                return 0;
+            });
+        });
             
         return res.render('feed',{
             title: "Feed",

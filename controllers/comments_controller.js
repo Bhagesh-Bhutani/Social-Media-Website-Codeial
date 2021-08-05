@@ -10,7 +10,7 @@ module.exports.create = async function(req, res){
             post: post._id
         });
         post.comments.push(comment._id);
-        post.save(); // save function to tell the database to update this document with this object
+        await post.save(); // save function to tell the database to update this document with this object
         if(req.xhr){
             comment = await comment.populate('user').execPopulate();
             return res.status(200).json({
@@ -44,7 +44,7 @@ module.exports.destroy = async function(req, res){
                     message: "Comment Deleted Successfully!"
                 });
             }
-            res.redirect('back');
+            return res.redirect('back');
         } else {
             if(req.xhr){
                 return res.status(401).json({

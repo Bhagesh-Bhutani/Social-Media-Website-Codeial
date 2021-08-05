@@ -88,13 +88,17 @@ let createPost = function(post){
             <div class = "post-comments">
                 <form action = "/comments/create" method = "POST" class = "create-comment">
                     <div class = "input-field">
-                        <input type = "text" name = "content" id = "comment-content" placeholder = "Add a comment..." required>
+                        <input type = "text" name = "content" class = "comment-input-text" placeholder = "Add a comment..." required>
                     </div>
                     <input type = "hidden" name = "post" value = "${ post._id }">
                     <button class="btn blue waves-effect waves-light" type="submit">Post
                         <i class="fa fa-paper-plane" aria-hidden="true"></i>
                     </button>
                 </form>
+
+                <div class = "comments-container">
+                
+                </div>
             </div>
         </div>
     `);
@@ -172,7 +176,9 @@ let newCommentCreateAction = function(commentForm){
         url: '/comments/create',
         data: $(commentForm).serialize(),
         success: function(data){
+            console.log($(commentForm).parent().find('.comments-container'));
             $(commentForm).parent().find('.comments-container').prepend(createComment(data.data.comment));
+            $(commentForm).find('.comment-input-text').eq(0).val('');
             materializeInit();
             successNotification(data);
         },

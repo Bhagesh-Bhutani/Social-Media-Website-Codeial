@@ -44,7 +44,7 @@
     <div class = "post-comments">
         <form action = "/comments/create" method = "POST" class = "create-comment">
             <div class = "input-field">
-                <input type = "text" name = "content" id = "comment-content" placeholder = "Add a comment..." required>
+                <input type = "text" name = "content" class = "comment-input-text" placeholder = "Add a comment..." required>
             </div>
             <input type = "hidden" name = "post" value = "<%= post._id %>">
             <button class="btn blue waves-effect waves-light" type="submit">Post

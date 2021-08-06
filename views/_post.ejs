@@ -2,7 +2,7 @@
     <div class = "user-intro">
         <a href="/users/profile/<%= post.user.id %>" class = "post-user-image-container">
             <div>
-                <img class = "circle responsive-img user-image" src = "/images/default-user-image.png">
+                <img class = "circle responsive-img user-image" src = "<%= post.user.avatar %>">
             </div>
             <div class = "user-name-time-container">
                 <h5><%= post.user.name %></h5>

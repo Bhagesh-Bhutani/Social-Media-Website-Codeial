@@ -1,7 +1,7 @@
 <div id = "<%= comment.id %>" class = "comment">
     <a href="/users/profile/<%= comment.user.id %>" class = "comment-image-container">
         <div>
-            <img class = "circle responsive-img user-image" src = "/images/default-user-image.png">
+            <img class = "circle responsive-img user-image" src = "<%= comment.user.avatar %>">
         </div>
     </a>
     

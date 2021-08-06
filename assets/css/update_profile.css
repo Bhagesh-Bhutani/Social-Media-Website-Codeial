@@ -2,7 +2,8 @@ main {
   margin-top: 2rem; }
 
 .user-photo-edit {
-  width: 15rem; }
+  width: 15rem;
+  height: 15rem !important; }
 
 .update-btn-container {
   margin-top: 2rem; }

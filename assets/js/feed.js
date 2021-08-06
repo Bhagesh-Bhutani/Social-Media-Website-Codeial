@@ -49,7 +49,7 @@ let createPost = function(post){
             <div class = "user-intro">
                 <a href="/users/profile/${post.user._id}" class = "post-user-image-container">
                     <div>
-                        <img class = "circle responsive-img user-image" src = "/images/default-user-image.png">
+                        <img class = "circle responsive-img user-image" src = "${post.user.avatar}">
                     </div>
                     <div class = "user-name-time-container">
                         <h5>${ post.user.name }</h5>
@@ -148,25 +148,25 @@ $('#feed-posts-container').on('click', '.post-delete-link', function(event){
 // For Comment Creation
 let createComment = function(comment){
     return `
-        <div id = "${comment._id}" class = "comment">
-            <a href="/users/profile/${comment.user._id}">
-            <div class = "comment-image-container">
-                <img class = "circle responsive-img user-image" src = "/images/default-user-image.png">
+    <div id = "${comment._id}" class = "comment">
+        <a href="/users/profile/${comment.user._id}" class = "comment-image-container">
+            <div>
+                <img class = "circle responsive-img user-image" src = "${comment.user.avatar}">
             </div>
-            </a>
-            
-            <div class = "comment-container">
-                <div class = "comment-user-deletebtn-container">
-                    <a href="/users/profile/${comment.user._id}"><h6>${comment.user.name}</h6></a>
-                    <i class="comment-dropdown-btn fas fa-chevron-circle-down dropdown-trigger waves-effect" data-target = "dropdown-${comment._id}">
-                    </i>
-                    <ul id = "dropdown-${comment._id}" class = "dropdown-content">
-                        <li><a href="/comments/destroy/${comment._id}" data-commentID = '${comment._id}' class = "comment-delete-link">Delete</a></li>
-                    </ul>
-                </div>
-                <p class = "comment-para">${comment.content}</p>
+        </a>
+        
+        <div class = "comment-container">
+            <div class = "comment-user-deletebtn-container">
+                <a href="/users/profile/${comment.user._id}"><h6>${comment.user.name}</h6></a>
+                <i class="comment-dropdown-btn fas fa-chevron-circle-down dropdown-trigger waves-effect" data-target = "dropdown-${comment._id}">
+                </i>
+                <ul id = "dropdown-${comment._id}" class = "dropdown-content">
+                    <li><a href="/comments/destroy/${comment._id}" data-commentID = '${comment._id}' class = "comment-delete-link">Delete</a></li>
+                </ul>
             </div>
+            <p class = "comment-para">${comment.content}</p>
         </div>
+    </div>
     `;
 }
 

@@ -31,7 +31,8 @@ main {
 .comment {
   display: flex; }
   .comment .user-image {
-    width: 3rem; }
+    width: 3rem;
+    height: 3rem !important; }
 
 .comment-container {
   border-radius: 0.7rem;

@@ -50,6 +50,7 @@ hr {
 
 .user-image {
   width: 3.5rem;
+  height: 3.5rem !important;
   margin-right: 0.5rem; }
 
 #user-dropdown-link {

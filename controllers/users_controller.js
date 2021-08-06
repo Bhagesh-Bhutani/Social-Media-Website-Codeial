@@ -1,6 +1,8 @@
 const passport = require('passport');
 const Post = require('../models/post');
 const User = require('../models/user');
+const fs = require('fs');
+const path = require('path');
 // Here the thing to remember is that each time we require passport,
 // no new instance is created, node.js preserves the instance from the beginning
 // which optimises things, and which preserves the keys we defined in passport
@@ -73,6 +75,9 @@ module.exports.updateUser = async function(req, res){
             user.email = req.body.email;
             
             if(req.file){
+                if(user.avatar != '/images/default-user-image.png'){
+                    fs.unlinkSync(path.join(__dirname, '..', user.avatar));
+                }
                 // save the path of file
                 user.avatar = User.avatarPath + '/' + req.file.filename;
             }

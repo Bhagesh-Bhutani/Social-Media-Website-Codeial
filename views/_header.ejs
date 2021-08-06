@@ -7,7 +7,7 @@
         <% if(locals.user){ %>
             <div class = "no-apply div-no-apply">
                 <div id = "user-dropdown-link" class='no-apply sidenav-trigger' href='#' data-target='user-options-dropdown'>
-                    <img src = "/images/default-user-image.png" alt="" class = "circle responsive-img user-image">
+                    <img src = "<%= user.avatar %>" alt="" class = "circle responsive-img user-image">
                     <i class="fas fa-caret-down"></i>
                 </div>
                 <ul id = "user-options-dropdown" class = "no-apply sidenav">
@@ -16,7 +16,7 @@
                             <div class="background no-apply">
                             <img src="/images/sidenav-bg.jpg">
                             </div>
-                            <a href="#!" class = "no-apply"><img class="circle" src="/images/default-user-image.png"></a>
+                            <a href="#!" class = "no-apply"><img class="circle" src = "<%= user.avatar %>"></a>
                             <a href="#!" class = "no-apply"><span class="white-text name"><%= locals.user.name %> </span></a>
                             <a href="#!" class = "no-apply"><span class="white-text email"><%= locals.user.email %> </span></a>
                         </div>

@@ -1,0 +1,16 @@
+.profile-header-section {
+  background-image: url("/images/profile-bg.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white; }
+
+#user-profile-image {
+  height: 15rem;
+  width: 15rem; }
+
+.profile-image-container {
+  padding: 4rem; }
+
+.material-placeholder {
+  display: inline-block; }

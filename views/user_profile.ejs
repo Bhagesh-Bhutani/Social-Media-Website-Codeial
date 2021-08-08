@@ -1,6 +1,12 @@
 <link rel="stylesheet" href="/css/user_profile.css">
 
 <main>
-    <h6><%= profile_user.name %></h6>
-    <h6><%= profile_user.email %></h6>
+    <section class = "profile-header-section">
+        <div class = "profile-image-container center-align">
+            <img id = "user-profile-image" class = "materialboxed circle" src = "<%= profile_user.avatar %> " alt="">
+            <h4><%= profile_user.name %></h4>
+        </div>
+    </section>
 </main>
+
+<script src = "/js/user-profile.js"></script>

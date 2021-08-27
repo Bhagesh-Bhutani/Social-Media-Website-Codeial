@@ -88,4 +88,8 @@ module.exports.updateUser = async function(req, res){
         console.log(err);
         res.status(404).send("This user not found.");
     }
-}
+};
+
+module.exports.redirectToFeed = function(req, res){
+    return res.redirect('/users/feed');
+};

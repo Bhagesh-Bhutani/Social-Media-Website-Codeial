@@ -15,6 +15,7 @@ const session = require('express-session');
 // For passport, require both passport and passport-local config module
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy'); // runs this code to define all the functions in passport
+const passportJWT = require('./config/passport-jwt-strategy');
 
 // MongoStore for persistent sessions, to maintain sessions even when server is restarted
 const MongoStore = require('connect-mongo')(session);

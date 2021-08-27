@@ -12,6 +12,12 @@ router.get('/update', passport.sign_out_handler, users_controller.getUpdateUserP
 
 router.post('/update', passport.sign_out_handler, users_controller.updateUser);
 
+router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+
+router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: '/signin'}), function(req, res){
+    return res.redirect('/users/feed');
+});
+
 router.use('/profile', require('./profile'));
 
 module.exports = router;

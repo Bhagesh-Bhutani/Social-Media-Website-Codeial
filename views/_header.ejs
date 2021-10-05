@@ -2,37 +2,75 @@
     <ul class = "sign-container">
         <div>
             <h4>Codeial</h4>
-            <a href="/"><li>Home</li></a>
+            <a href="/" class = "navbar-button"><li>Home</li></a>
+            <% if(locals.user) { %>
+                <input type="text" id = "search-bar" placeholder = "Search...">
+                <ul id = "search-bar-dropdown" class = "collection">
+
+                </ul>
+            <% } %>
         </div>
         <% if(locals.user){ %>
-            <div class = "no-apply div-no-apply">
-                <div id = "user-dropdown-link" class='no-apply sidenav-trigger' href='#' data-target='user-options-dropdown'>
-                    <img src = "<%= user.avatar %>" alt="" class = "circle responsive-img user-image">
-                    <i class="fas fa-caret-down"></i>
+            <div>
+                <div id = "friend-request" class = "friend-request waves-effect waves-light" data-target = 'friend-request-dropdown'>
+                    <i id = "friend-request-icon" class="fas fa-user-friends" style = "color: white;"></i>
+                    <% if(friendRequestUsers.length > 0) { %>
+                        <span class = "my-badge"><%= friendRequestUsers.length %></span>
+                    <% } %>
                 </div>
-                <ul id = "user-options-dropdown" class = "no-apply sidenav">
-                    <li>
-                        <div class="user-view no-apply">
-                            <div class="background no-apply">
-                            <img src="/images/sidenav-bg.jpg">
+                <div id = "friend-request-dropdown" class="collection">
+                    <% if(friendRequestUsers.length > 0) { %>
+                        <% for(friendRequestUser of friendRequestUsers) { %>
+                            <li class = "collection-item friend" data-friend-id = "<%= friendRequestUser._id %>">
+                                <a href = "/users/profile/<%= friendRequestUser._id %>" class = "friend-image-name">
+                                    <img src = "<%= friendRequestUser.avatar %>" alt="" class="circle responsive-img friend-img">
+                                    <span class="black-text">
+                                        <%= friendRequestUser.name %> 
+                                    </span>
+                                </a>
+                                <div class = "accept-reject-friend-icons">
+                                    <i class="far fa-check-circle accept-friend-request-icon"></i>
+                                    <i class="far fa-times-circle reject-friend-request-icon"></i>
+                                </div>
+                            </li>
+                        <% } %>
+                    <% } else { %>
+                        <li class = "collection-item">No requests!</li>
+                    <% } %>
+                </div>
+                <a href = "/chat" id = "chat-button" class = "waves-effect waves-light">
+                    <i class="fas fa-comment-alt"></i>
+                </a>
+                <div class = "">
+                    <div id = "user-dropdown-link" class='sidenav-trigger waves-effect waves-light' href='#' data-target='user-options-dropdown'>
+                        <img src = "<%= user.avatar %>" alt="" class = "circle responsive-img user-image">
+                        <i class="fas fa-caret-down" style = "color: white;"></i>
+                    </div>
+                    <ul id = "user-options-dropdown" class = "sidenav">
+                        <li>
+                            <div class="user-view">
+                                <div class="background">
+                                <img src="/images/sidenav-bg.jpg">
+                                </div>
+                                <a href="#!" class = ""><img class="circle" src = "<%= user.avatar %>"></a>
+                                <a href="#!" class = ""><span class="white-text name"><%= locals.user.name %> </span></a>
+                                <a href="#!" class = ""><span class="white-text email"><%= locals.user.email %> </span></a>
                             </div>
-                            <a href="#!" class = "no-apply"><img class="circle" src = "<%= user.avatar %>"></a>
-                            <a href="#!" class = "no-apply"><span class="white-text name"><%= locals.user.name %> </span></a>
-                            <a href="#!" class = "no-apply"><span class="white-text email"><%= locals.user.email %> </span></a>
-                        </div>
-                    </li>
-                    <li><a href = "/users/feed" class = "no-apply">Home</a></li>
-                    <li><a href = "/users/profile/<%= user.id %> " class = "no-apply">My Profile</a></li>
-                    <li><a href = "/users/update" class = "no-apply">Edit Profile</a></li>
-                    <li><a href = "/users/sign-out" class = "no-apply">Sign Out</a></li>
-                    <li><a class = "sidenav-close no-apply" href = "#!">Close</a></li>
-                </ul>
+                        </li>
+                        <li><a href = "/users/feed" class = "">Home</a></li>
+                        <li><a href = "/users/profile/<%= user.id %> " class = "">My Profile</a></li>
+                        <li><a href = "/friends" class = "">Friends</a></li>
+                        <li><a href = "/users/update" class = "">Edit Profile</a></li>
+                        <li><a href = "/users/sign-out" class = "">Sign Out</a></li>
+                        <li><a class = "sidenav-close" href = "#!">Close</a></li>
+                    </ul>
+                </div>
             </div>
         <% } else { %>
             <div>
-                <a href="/signin"><li>Sign In</li></a>
-                <a href="/signup"><li>Sign Up</li></a>
+                <a href="/signin" class = "navbar-button"><li>Sign In</li></a>
+                <a href="/signup" class = "navbar-button"><li>Sign Up</li></a>
             </div>
-        <% } %> 
+        <% } %>
     </ul>
 </header>

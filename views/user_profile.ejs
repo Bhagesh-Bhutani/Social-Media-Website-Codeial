@@ -1,12 +1,37 @@
-<link rel="stylesheet" href="/css/user_profile.css">
+<link rel = "stylesheet" href = "<%= assetPath('css/user_profile.css') %>">
 
 <main>
     <section class = "profile-header-section">
         <div class = "profile-image-container center-align">
-            <img id = "user-profile-image" class = "materialboxed circle" src = "<%= profile_user.avatar %> " alt="">
+            <img id = "user-profile-image" class = "materialboxed circle" src = "<%= profile_user.avatar %>" alt="">
             <h4><%= profile_user.name %></h4>
         </div>
     </section>
+
+    <% if(profile_user.id != user.id) { %>
+        <section class = "action-buttons">
+            <% if(user.friends.includes(profile_user.id)) { %>
+                <div id = "remove" class = "action-button" data-user-id = "<%= profile_user._id %>">
+                    Remove Friend <i class="fas fa-user-minus"></i>
+                </div>
+            <% } else if(locals.sentFriendRequest) { %>
+                <div id = "withdraw" class = "action-button" data-user-id = "<%= profile_user._id %>">
+                    Withdraw Request
+                </div>
+            <% } else if(locals.receivedFriendRequest) { %>
+                <div id = "accept" class = "action-button" data-user-id = "<%= profile_user._id %>">
+                    Accept <i class="fas fa-user-plus"></i>
+                </div>
+                <div id = "reject" class = "action-button" data-user-id = "<%= profile_user._id %>">
+                    Reject <i class="fas fa-user-slash"></i>
+                </div>
+            <% } else { %>
+                <div id = "connect" class = "action-button" data-user-id = "<%= profile_user._id %>">
+                    Connect <i class="fas fa-plus"></i>
+                </div>
+            <% } %>
+        </section>
+    <% } %> 
 </main>
 
-<script src = "/js/user-profile.js"></script>
+<script src = "<%= assetPath('js/user-profile.js') %>"></script>

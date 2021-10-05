@@ -58,7 +58,7 @@ passport.checkAuthentication = function(req, res, next){
 
     // User is not Authenticated
     return res.redirect('/signin');
-}
+};
 
 // Middleware for login and signup pages, if authenticated, redirect to profile page, else call next and let
 // endpoint actions do the job
@@ -70,7 +70,7 @@ passport.login_signup_handler = function(req, res, next){
 
     // Not Authenticated, so call next and endpoint handlers will render the requested page
     return next();
-}
+};
 
 // Middleware to handle requests at /users/sign-out
 passport.sign_out_handler = function(req, res, next){
@@ -80,7 +80,7 @@ passport.sign_out_handler = function(req, res, next){
 
     // Here user is not Authenticated
     return res.redirect('/signin');
-}
+};
 
 // Middleware to set the authenticated user which is to be given to views, via res.locals
 passport.setAuthenticatedUser = function(req, res, next){
@@ -89,6 +89,6 @@ passport.setAuthenticatedUser = function(req, res, next){
     }
 
     return next();
-}
+};
 
 module.exports = passport;

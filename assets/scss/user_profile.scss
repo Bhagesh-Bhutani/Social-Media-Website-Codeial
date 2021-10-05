@@ -19,3 +19,27 @@
 .material-placeholder{
     display: inline-block;
 }
+
+.action-buttons{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.action-button{
+    color: white;
+    font-size: 1.5rem;
+    background-color: rgb(46, 46, 224);
+    border-radius: 2.5rem;
+    margin: 0.5rem;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+    &:hover{
+        background-color: rgb(84, 84, 231);
+    }
+    &:active{
+        box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.329) inset;
+    }
+}

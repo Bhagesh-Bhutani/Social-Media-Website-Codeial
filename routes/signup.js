@@ -6,6 +6,8 @@ const user_sign_up_controller = require('../controllers/user_sign_up_controller'
 
 router.get('/', passport.login_signup_handler, user_sign_up_controller.sign_up_action);
 
-router.post('/', user_sign_up_controller.create);
+router.post('/', user_sign_up_controller.createTempUser);
+
+router.use('/otp', require('./signup_otp'));
 
 module.exports = router;

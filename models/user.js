@@ -17,6 +17,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    friends: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
     avatar: {
         type: String,
         default: '/images/default-user-image.png'

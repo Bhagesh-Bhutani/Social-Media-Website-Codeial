@@ -25,7 +25,7 @@ main{
 }
 
 .waves-effect.waves-blue .waves-ripple {
-     background-color: #24a0ed;
+     background-color: #5fb6ec;
 }
 
 .like-comment-tab{
@@ -159,9 +159,6 @@ $comment-bg-color: #f2f2f2;
     margin: 0;
     margin-top: 0.2rem;
     hyphens: auto;
-    // flex-grow: 1;
-    // word-break: break-all;
-    // overflow-wrap: break-word;
 }
 
 .fade-opacity{
@@ -171,4 +168,12 @@ $comment-bg-color: #f2f2f2;
 .transparent-opacity{
     opacity: 0;
     visibility: hidden;
+}
+
+.filled-like-btn{
+    color: #15aabf;
+}
+
+.liked{
+    color: #15aabf;    
 }

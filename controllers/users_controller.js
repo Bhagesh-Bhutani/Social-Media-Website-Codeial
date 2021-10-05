@@ -1,6 +1,7 @@
 const passport = require('passport');
 const Post = require('../models/post');
 const User = require('../models/user');
+const Like = require('../models/like');
 const fs = require('fs');
 const path = require('path');
 // Here the thing to remember is that each time we require passport,
@@ -22,6 +23,11 @@ module.exports.users_action = async function(req, res){
             }
         });
 
+        let likesPost = await Like.find({
+            onModel: 'Post',
+            user: req.user._id
+        });
+
         posts.forEach(post => {
             post.comments.sort(function(c1, c2){
                 if(c1.createdAt < c2.createdAt){
@@ -36,7 +42,8 @@ module.exports.users_action = async function(req, res){
             
         return res.render('feed',{
             title: "Feed",
-            posts: posts
+            posts: posts,
+            likesPost: likesPost
         });
     } catch(err){
         console.log(err);

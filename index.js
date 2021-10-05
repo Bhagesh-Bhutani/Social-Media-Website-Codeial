@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+const env = require('./config/environment');
+const logger = require('morgan');
+require('./config/view-helpers')(app);
 const port = 8000;
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
@@ -32,17 +35,25 @@ const customMware = require('./config/middleware');
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+// Socket.io Setup
+// const chatServer = require('http').Server(app);
+// const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
+// chatServer.listen(5000);
+// console.log("Chat Server is listening on port 5000");
+
 // Middle for sass
-app.use(sassMiddleware({
-    src: './assets/scss',
-    dest: './assets/css',
-    debug: false,
-    outputStyle: 'extended',
-    prefix: '/css'
-}));
+if(env.name == 'development'){
+    app.use(sassMiddleware({
+        src: path.join(__dirname, env.asset_path, 'scss'),
+        dest: path.join(__dirname, env.asset_path, 'css'),
+        debug: false,
+        outputStyle: 'extended',
+        prefix: '/css'
+    }));
+}
 
 // Middleware to set up Static File Access
-app.use(express.static('./assets'));
+app.use(express.static(env.asset_path));
 
 // Make uploads path available to browser
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
@@ -60,12 +71,15 @@ app.use(expressLayouts);
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 
+// Logger Middleware
+app.use(logger(env.morgan.mode, env.morgan.options));
+
 // Session middleware
 // mongo store is used to store the session cookie in MongoDB
 app.use(session({
     name: 'codeial',
     // TODO change the secret before deployment in production mode
-    secret: 'blahsomething',
+    secret: env.session_cookie_key,
     saveUninitialized: false,
     resave: false,
     cookie: {
@@ -89,11 +103,12 @@ app.use(passport.setAuthenticatedUser);
 // Middleware for connect-flash, just below session
 app.use(flash());
 app.use(customMware.setFlash);
+app.use(customMware.setFriendRequestUsers);
 
 // use express router
 app.use('/', require('./routes'));
 
-app.listen(port, function(err){
+const chatServer = app.listen(port, function(err){
     if(err){
         console.log(err);
         return;
@@ -101,3 +116,5 @@ app.listen(port, function(err){
 
     console.log(`Server is running on port : ${port}`);
 });
+
+const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);

@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="<%= assetPath('css/friends.css') %>">
+
+<main>
+    <div class = "center-align">
+        <h2>Your Friends</h2>
+    </div>
+
+    <section class = "friends-list">
+        <% for(friend of friends) { %>
+            <div class = "row">
+                <div class = "col xs0 s0 m2 l3 xl3">
+
+                </div>
+                <div class = "col xs12 s12 m8 l6 xl6 card-panel grey lighten-5 z-depth-1">
+                    <div class = "friend">
+                        <div class = "friend-image-name">
+                            <img src = "<%= friend.avatar %>" alt="" class="circle responsive-img friend-img">
+                            <span class="black-text">
+                                <%= friend.name %> 
+                            </span>
+                        </div>
+                        <div>
+                            <div id = "remove" class = "action-button" data-user-id = "<%= friend._id %>">
+                                Remove <i class="fas fa-user-minus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class = "col xs0 s0 m2 l3 xl3">
+
+                </div>
+            </div>
+        <% } %> 
+    </section>    
+</main>
+
+<script src = "<%= assetPath('js/friends.js') %>"></script>

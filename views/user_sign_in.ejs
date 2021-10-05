@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/user_sign_in.css">
+<link rel="stylesheet" href = "<%= assetPath('css/user_sign_in.css') %>">
 
 <div class = "user-heading">
     <h2>Login</h2>
@@ -16,10 +16,15 @@
         <div class = "submit-container">
             <button type = "submit">Login <i class="fas fa-arrow-right"></i></button>
         </div>
+
+        <br>
+        <a href = "/reset-password" id = "forgot-password-link">Forgot Password?</a>
         
         <h5>OR</h5>
         <a href = "/users/auth/google">
-            <img src = "/images/google-sign-in-btn.png" alt = "">
+            <img src = "<%= assetPath('images/google-sign-in-btn.png') %>" alt = "">
         </a>
     </form>
 </div>
+
+<script src = "<%= assetPath('js/user_sign_in.js') %>"></script>

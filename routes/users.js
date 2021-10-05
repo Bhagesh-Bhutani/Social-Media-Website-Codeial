@@ -18,4 +18,6 @@ router.get('/auth/google/callback', passport.authenticate('google', {failureRedi
 
 router.use('/profile', require('./profile'));
 
+router.use('/search', require('./users_search'));
+
 module.exports = router;

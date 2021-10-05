@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
-    <link rel="stylesheet" href="/css/layout.css">
+    <!-- <link rel="stylesheet" href="/css/layout.css"> -->
+    <link rel="stylesheet" href="<%= assetPath('css/layout.css') %>">
     <%- style %>
 </head>
 <body>
@@ -42,7 +43,15 @@
             }).show();
         <% } %>
     </script>
-    <script src = "/js/layout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+    <script src = "<%= assetPath('js/layout.js') %>"></script>
+    <% if(locals.user) { %>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js" integrity="sha512-WL6WGKMPBiM9PnHRYIn5YEtq0Z8XP4fkVb4qy7PP4vhmYQErJ/dySyXuFIMDf1eEYCXCrQrMJfkNwKc9gsjTjA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src = "<%= assetPath('js/chat_engine.js') %>"></script>
+        <script>
+            let ChatEngine = new chatEngine('<%= user.id %>', '<%= user.email %>');
+        </script>
+    <% } %> 
     <%- script %>
 </body>
 </html>

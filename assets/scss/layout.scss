@@ -34,9 +34,9 @@ hr{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white;
+    // color: white;
     font-size: 1.15rem;
-    div:not(.no-apply){
+    >div{
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -45,18 +45,19 @@ hr{
         margin: 0.5rem;
         color: white;
     }
-    a:not(.no-apply){
-        display: inline-block;
-        padding: 0.8rem;
-        margin: 0.5rem;
-        border: solid white 2px;
-        border-radius: 0.5rem;
-        transition-duration: 0.2s;
-        transition-timing-function: linear;
-        &:hover:not(.no-apply){
-            color: black;
-            background-color: white;
-        }
+}
+
+.navbar-button{
+    display: inline-block;
+    padding: 0.8rem;
+    margin: 0.5rem;
+    border: solid white 2px;
+    border-radius: 0.5rem;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+    &:hover{
+        color: black;
+        background-color: white;
     }
 }
 
@@ -79,6 +80,128 @@ hr{
     
     &:hover{
         background-color: rgba(202, 195, 195, 0.479);
+    }
+}
+
+#search-bar{
+    all: unset;
+    width: 20rem;
+    border-radius: 0.3rem;
+    padding: 0.3rem;
+    background-color: rgb(80, 80, 80);
+    flex-shrink: 1;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+    &:hover{
+        background-color: rgb(92, 91, 91);
+    }
+    &:focus{
+        background-color: white;
+    }
+}
+
+#user-dropdown-link{
+    flex-shrink: 0;
+}
+
+.friend-request{
+    cursor: pointer;
+    // height: 100%;
+    padding: 1.5rem 1rem;
+    // padding: 0.6rem 0;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+    &:hover{
+        background-color: gray;
+    }
+}
+
+.my-badge{
+    display: inline-block;
+    position: absolute;
+    font-size: small;
+    bottom: 60%;
+    right: 5%;
+    border-radius: 50%;
+    height: 1.4rem;
+    width: auto;
+    min-width: 1.4rem;
+    text-align: center;
+    color: white;
+    background-color: tomato;
+}
+
+#friend-request-dropdown{
+    z-index: 2;
+    position: absolute;
+    top: 5rem;
+    right: 4rem;
+    width: 30rem;
+    background-color: white;
+    display: none;
+}
+
+.friend-img{
+    height: 2.5rem !important;
+    width: 2.5rem;
+    margin-right: 0.7rem;
+}
+
+.friend{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &:hover{
+        background-color: rgb(241, 241, 241);
+    }
+}
+
+.friend-image-name{
+    display: flex;
+    align-items: center;
+}
+
+.accept-reject-friend-icons>i{
+    cursor: pointer;
+    transform: scale(1.7);
+    margin: 0 0.4rem;
+}
+
+.accept-friend-request-icon{
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    &:hover{
+        color: green;
+    }
+}
+
+.reject-friend-request-icon{
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    &:hover{
+        color: red;
+    }
+}
+
+#search-bar-dropdown{
+    position: fixed;
+    z-index: 5;
+}
+
+.search-result{
+    display: flex;
+    align-items: center;
+}
+
+#chat-button{
+    cursor: pointer;
+    // height: 100%;
+    padding: 1.5rem 1rem;
+    // padding: 0.6rem 0;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+    &:hover{
+        background-color: gray;
     }
 }
 
@@ -126,5 +249,30 @@ hr{
 @media screen and (max-width: 576px){
     .sign-container h4{
         display: none;
+    }
+    #search-bar{
+        // display: none;
+        width: 15rem;
+    }
+
+    #friend-request-dropdown{
+        // right: 0;
+        display: fixed;
+        width: 90vw;
+        right: 5vw;
+    }
+}
+
+@media screen and (max-width: 430px){
+    #search-bar{
+        // display: none;
+        width: 10rem;
+    }
+}
+
+@media screen and (max-width: 360px){
+    #search-bar{
+        display: none;
+        // width: 10rem;
     }
 }

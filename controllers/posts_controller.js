@@ -1,5 +1,6 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
+const Like = require('../models/like');
 
 module.exports.create = async function(req, res){
     try{
@@ -30,7 +31,7 @@ module.exports.create = async function(req, res){
         console.log(err);
         return;
     }
-}
+};
 
 // /posts/destroy/:id
 module.exports.destroy = async function(req, res){
@@ -41,6 +42,10 @@ module.exports.destroy = async function(req, res){
                 await post.remove();
                 await Comment.deleteMany({
                     post: post._id
+                });
+                await Like.deleteMany({
+                    onModel: 'Post',
+                    likeable: post._id
                 });
                 return res.status(200).json({
                     message: "Post Deleted Successfully!"
@@ -56,6 +61,10 @@ module.exports.destroy = async function(req, res){
             await Comment.deleteMany({
                 post: post._id
             });
+            await Like.deleteMany({
+                onModel: 'Post',
+                likeable: post._id
+            });
             return res.redirect('back');
         } else {
             console.log("Invalid user trying to delete someone else's post.");
@@ -65,4 +74,4 @@ module.exports.destroy = async function(req, res){
         console.log(err);
         return;
     }
-}
+};

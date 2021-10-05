@@ -14,7 +14,7 @@
             <div>
                 <i class="fas fa-edit post-dropdown-btn dropdown-trigger waves-effect" data-target = "dropdown-<%= post.id %>"></i>
                 <ul id = "dropdown-<%= post.id %>" class = "dropdown-content">
-                    <li><a href="/posts/destroy/<%= post.id %>" class = "post-delete-link" data-postID = "<%= post.id %> ">Delete</a></li>
+                    <li><a href="/posts/destroy/<%= post.id %>" class = "post-delete-link" data-postID = "<%= post.id %>">Delete</a></li>
                 </ul>
             </div>
         <% } %>
@@ -27,16 +27,27 @@
     </div>
     <div class = "like-comment-numbers">
         <div class = "like-numbers">
-            0 <i class = "far fa-thumbs-up"></i>
+            <span class = "like-numbers-count"><%= post.likes.length %></span> <i class="fas fa-thumbs-up filled-like-btn"></i>
         </div>
         <div class = "comment-numbers">
-            <i class = "far fa-comment"></i> <%= post.comments.length %> 
+            <i class = "far fa-comment"></i> <span class = "comment-count"><%= post.comments.length %></span>
         </div>
     </div>
     <div class = "like-comment-tab row" id = "like-comment-tab">
-        <div class = "col xs6 s6 m6 l6 xl6 center-align waves-effect waves-blue like-btn">
+        <% if(locals.likesPost && locals.likesPost.some((like) => { %>
+            <% return post.id == like.likeable; %> 
+        <% })) { %>
+            <div class = "col xs6 s6 m6 l6 xl6 center-align waves-effect waves-blue like-btn liked">
+                <i class = "fas fa-thumbs-up"></i> Like
+            </div>
+        <% } else { %>
+            <div class = "col xs6 s6 m6 l6 xl6 center-align waves-effect waves-blue like-btn">
+                <i class = "far fa-thumbs-up"></i> Like
+            </div>
+        <% } %> 
+        <!-- <div class = "col xs6 s6 m6 l6 xl6 center-align waves-effect waves-blue like-btn">
             <i class = "far fa-thumbs-up"></i> Like
-        </div>
+        </div> -->
         <div class = "col xs6 s6 m6 l6 xl6 center-align waves-effect waves-green comment-btn">
             <i class = "far fa-comment"></i> Comment
         </div>

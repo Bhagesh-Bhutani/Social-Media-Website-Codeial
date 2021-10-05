@@ -1,0 +1,61 @@
+<link rel="stylesheet" href = "<%= assetPath('css/chat.css') %>">
+
+<main>
+    <section class = "top-space">
+
+    </section>
+
+    <section class = "chat-app-container row">
+        <div class = "contacts-navigator col xs4 s4 m4 l4 xl4">
+            <div class = "contacts-search-bar-container">
+                <div class = "input-field">
+                    <input type = "text" id = "contacts-search-bar">
+                    <label for = "contacts-search-bar">Enter Name...</label>
+                </div>
+            </div>
+
+            <div class = "contacts-list">
+                <% for(user of usersList) { %>
+                    <div class = "contact-item waves-effect waves-teal" data-contactID = "<%= user._id %>">
+                        <div class = "contact-name-image-container">
+                            <div class = "contact-item-image">
+                                <img src = "<%= user.avatar %>" alt="" class = "circle responsive-img user-image-contact-item">
+                            </div>
+                            <div class = "contact-item-name">
+                                <%= user.name %>
+                            </div>
+                        </div>
+
+                        <div class = "new-message-badge">
+
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+
+        <div class = "messages-container col xs8 s8 m8 l8 xl8" data-contactID = "">
+            <div class = "contact-header">
+                <div class = "contact-image">
+
+                </div>
+                <div class = "contact-name">
+                    Click on a user...
+                </div>
+            </div>
+            <div class = "contact-messages">
+
+            </div>
+            <form class = "message-field">
+                <input class = "message-field-input browser-default" type = "text" placeholder = "Type a message" data-contactID = "" required>
+                <button class = "send-message-btn btn-floating btn-large btn waves-effect waves-light submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<!-- <audio class = "ringtone" controls>
+    <source src = "/music/ringtone.mp3" type="audio/ogg">
+</audio> -->
+
+<script src = "<%= assetPath('js/chat.js') %>"></script>

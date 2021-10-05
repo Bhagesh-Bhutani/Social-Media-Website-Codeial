@@ -18,7 +18,7 @@ main {
         background-color: rgba(233, 230, 230, 0.603); }
 
 .waves-effect.waves-blue .waves-ripple {
-  background-color: #24a0ed; }
+  background-color: #5fb6ec; }
 
 .like-comment-tab {
   margin-bottom: 0;
@@ -122,3 +122,9 @@ main {
 .transparent-opacity {
   opacity: 0;
   visibility: hidden; }
+
+.filled-like-btn {
+  color: #15aabf; }
+
+.liked {
+  color: #15aabf; }

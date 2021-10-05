@@ -12,7 +12,7 @@ router.get('/', passport.login_signup_handler ,user_sign_in_controller.user_sign
 router.post('/', passport.authenticate(
     'local',
     {
-        failureRedirect: '/signin'
+        failureRedirect: '/signin',
     }
 ), user_sign_in_controller.createSession);
 

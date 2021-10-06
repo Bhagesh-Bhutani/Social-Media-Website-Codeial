@@ -38,17 +38,19 @@ module.exports.chatSockets = function(socketServer){
 
         socket.on('send-message', async function(data){
             console.log(data);
-            let receiverSocketID = await OnlineUser.findOne({
+            let receiverSocketIDList = await OnlineUser.find({
                 user_id: data.receiverID
             });
 
-            console.log(receiverSocketID);
-            if(receiverSocketID){
+            console.log(receiverSocketIDList);
+            if(receiverSocketIDList){
                 console.log("YES");
-                io.to(receiverSocketID.socket_id).emit('receive-message', {
-                    sender_id: data.senderID,
-                    message: data.message
-                });
+                for(socketObject of receiverSocketIDList){
+                    io.to(socketObject.socket_id).emit('receive-message', {
+                        sender_id: data.senderID,
+                        message: data.message
+                    });
+                }
             }
         });
     });

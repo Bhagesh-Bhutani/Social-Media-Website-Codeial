@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const onlineUserSchema = new mongoose.Schema({
     user_id: {
         type: mongoose.Schema.Types.ObjectId,
-        unique: true,
         required: true,
         ref: 'User'
     },

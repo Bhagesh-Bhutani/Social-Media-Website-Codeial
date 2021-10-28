@@ -1,4 +1,4 @@
-# This is a Major Project on a Social Media Website
+# This is a Major Project on Social Media Website
 
 ## Hosted Link:
 https://codeialbhagesh.herokuapp.com
